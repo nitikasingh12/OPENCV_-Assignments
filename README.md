@@ -1,26 +1,25 @@
-# Computer Vision â€“ Day 1: 25 Python + OpenCV Coding Questions
+# Computer Vision - Day 1: 25 Python + OpenCV Coding Questions
 
 Solutions to 25 fundamental Computer Vision practice questions covering
 image handling, pixel operations, image representation, sampling,
-quantization, and basic geometric operations â€” using Python, OpenCV, and NumPy.
+quantization, and basic geometric operations - using Python, OpenCV, and NumPy.
 
-## ðŸ“ Project Structure
-
-```
+## Project Structure
 cv-day1-25-questions/
-â”œâ”€â”€ README.md
-â”œâ”€â”€ requirements.txt
-â”œâ”€â”€ images/
-â”‚   â””â”€â”€ sample.jpg          # test image used by every script
-â”œâ”€â”€ outputs/                 # generated results land here (gitignored)
-â””â”€â”€ solutions/
-    â”œâ”€â”€ q01_read_an_image_using.py
-    â”œâ”€â”€ q02_check_whether_an_image.py
-    â”œâ”€â”€ ...
-    â””â”€â”€ q25_rotate_an_image_by.py
-```
+├── README.md
+├── requirements.txt
+├── images/
+│ └── sample.jpg # test image used by every script
+├── outputs/ # generated results land here (gitignored)
+└── solutions/
+├── q01_read_an_image_using.py
+├── q02_check_whether_an_image.py
+├── ...
+└── q25_rotate_an_image_by.py
 
-## ðŸš€ Setup
+
+
+## Setup
 
 ```bash
 git clone <your-repo-url>
@@ -30,7 +29,7 @@ source venv/bin/activate        # on Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## â–¶ï¸ Running a Solution
+## Running a Solution
 
 Each question is a standalone, runnable script. From the project root:
 
@@ -49,7 +48,7 @@ Every script:
 To use your own image instead, replace `images/sample.jpg` or edit the
 `IMG_PATH` variable at the top of any script.
 
-## ðŸ“š Solutions Index
+## Solutions Index
 
 ### Q1. Read an image using OpenCV and display it.
 
@@ -87,7 +86,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** img.shape returns a tuple (rows, cols, channels) for color images â€” rows = height, cols = width.
+**Explanation:** img.shape returns a tuple (rows, cols, channels) for color images - rows = height, cols = width.
 
 **Observation:** For the sample image this prints Height: 400, Width: 600, Channels: 3 (BGR).
 
@@ -111,7 +110,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** img.dtype reveals the numeric type used per pixel channel â€” uint8 means values range 0-255.
+**Explanation:** img.dtype reveals the numeric type used per pixel channel - uint8 means values range 0-255.
 
 **Observation:** The sample image prints dtype: uint8, the standard format for 8-bit images.
 
@@ -171,7 +170,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** cv2.resize() takes the target size as (width, height) â€” note the order is reversed compared to img.shape (height, width).
+**Explanation:** cv2.resize() takes the target size as (width, height) - note the order is reversed compared to img.shape (height, width).
 
 **Observation:** For a 600x400 original, the resized output is 300x200, exactly half in each dimension.
 
@@ -183,7 +182,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** Image arrays are indexed as [row, column] i.e. [y, x] â€” a common source of bugs is mixing this up with (x, y).
+**Explanation:** Image arrays are indexed as [row, column] i.e. [y, x] - a common source of bugs is mixing this up with (x, y).
 
 **Observation:** The pixel at (100, 50) returns a 3-element BGR array from inside the green rectangle drawn on the sample image.
 
@@ -267,7 +266,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** cv2.meanStdDev() returns two small arrays (one entry per channel); standard deviation quantifies contrast â€” a higher value means intensities are more spread out.
+**Explanation:** cv2.meanStdDev() returns two small arrays (one entry per channel); standard deviation quantifies contrast - a higher value means intensities are more spread out.
 
 **Observation:** The sample image has a fairly high standard deviation because it mixes very dark background pixels with bright shapes and white text.
 
@@ -275,7 +274,7 @@ that with an `is None` test.
 
 **File:** [`solutions/q19_create_a_256x256_grayscale.py`](solutions/q19_create_a_256x256_grayscale.py)
 
-**Approach:** np.full((h, w), value, dtype=np.uint8) allocates an array pre-filled with a constant value â€” a quick way to build solid-color test images.
+**Approach:** np.full((h, w), value, dtype=np.uint8) allocates an array pre-filled with a constant value - a quick way to build solid-color test images.
 
 **Key functions used:** see inline comments in the script.
 
@@ -305,7 +304,7 @@ that with an `is None` test.
 
 **Explanation:** Integer division by `step` collapses many original values into the same bucket, then multiplying back by `step` maps each bucket to a representative displayable intensity.
 
-**Observation:** The result shows visible 'banding' â€” smooth gradients turn into 16 flat bands instead of 256 smooth shades.
+**Observation:** The result shows visible 'banding' - smooth gradients turn into 16 flat bands instead of 256 smooth shades.
 
 ### Q22. Convert an 8-bit grayscale image into a 2-bit quantized image and display the result.
 
@@ -339,7 +338,7 @@ that with an `is None` test.
 
 **Key functions used:** see inline comments in the script.
 
-**Explanation:** NumPy slicing img[y1:y2, x1:x2] is all that's needed to crop â€” no dedicated OpenCV function is required since images are just arrays.
+**Explanation:** NumPy slicing img[y1:y2, x1:x2] is all that's needed to crop - no dedicated OpenCV function is required since images are just arrays.
 
 **Observation:** The cropped output isolates exactly the green rectangle region drawn on the sample image, at a shape of (150, 200, 3).
 
@@ -355,21 +354,21 @@ that with an `is None` test.
 
 **Observation:** A 600x400 image becomes 400x600 after rotation, with content visibly turned a quarter-turn clockwise.
 
-## ðŸ§° Core Functions Practiced
+## Core Functions Practiced
 
 | Function | Purpose |
 |---|---|
 | `cv2.imread()` | Load an image from disk |
 | `cv2.imshow()` / `waitKey()` / `destroyAllWindows()` | Display an image in a window |
 | `cv2.imwrite()` | Save an image to disk |
-| `cv2.cvtColor()` | Convert between color spaces (e.g. BGR â†’ Gray, BGR â†’ RGB) |
+| `cv2.cvtColor()` | Convert between color spaces (e.g. BGR to Gray, BGR to RGB) |
 | `cv2.resize()` | Resize / downsample an image |
 | `cv2.split()` / `cv2.merge()` | Separate and recombine color channels |
 | `cv2.rotate()` | Rotate an image by a fixed angle |
 | `cv2.minMaxLoc()` / `cv2.mean()` / `cv2.meanStdDev()` | Pixel intensity statistics |
 | NumPy indexing/slicing | Direct pixel access, cropping, quantization |
 
-## ðŸ“ Notes
+## Notes
 
 - All scripts use OpenCV's default **BGR** channel order unless explicitly
   converted to RGB (Q9) for Matplotlib display.
@@ -377,9 +376,8 @@ that with an `is None` test.
   integer-division bucketing, which is a simple and common way to
   simulate lower bit-depth images.
 - Screenshots of actual output aren't included in this repo since results
-  are generated fresh by running the scripts â€” see `outputs/` after running.
+  are generated fresh by running the scripts - see `outputs/` after running.
 
-## ðŸ‘¤ Author
+## Author
 
 Nitika Singh ([@nitikasingh12](https://github.com/nitikasingh12))
-
